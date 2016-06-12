@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="action_settings">Settings</string>
+    <string name="todolist">待办事项</string>
+    <string name="addItem">新增事项</string>
+    <string name="done">完成</string>
+</resources>
