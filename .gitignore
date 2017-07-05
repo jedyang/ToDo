@@ -6,3 +6,13 @@
 .DS_Store
 /build
 /captures
+
+*.class
+
+*.class
+
+*.class
+
+app/build/intermediates/classes/debug/android/support/design/R$id.class
+
+app/build/intermediates/classes/debug/android/support/design/R$layout.class

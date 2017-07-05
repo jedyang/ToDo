@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.yunsheng.todo.MainActivity;
 import com.yunsheng.todo.R;
 import com.yunsheng.todo.dao.ItemDO;
 
@@ -56,22 +57,36 @@ public class ItemAdapter extends ArrayAdapter<ItemDO> {
         viewHolder.checkBox.setChecked(2 == item.getStatus());
 
         // checkbox上添加事件
-//        viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                haveDone(position);
-//
+        viewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                haveDone(position);
+
 //                // 完成的字体加删除线
 ////                viewHolder.textView.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-//
-//            }
-//        });
+                MainActivity mainActivity = (MainActivity) superContext;
+                ItemAdapter adapter = mainActivity.getAdapter();
+                mainActivity.assembleList();
+                adapter.notifyDataSetChanged();
+
+            }
+        });
 
         return view;
 
     }
 
 
+    private void haveDone(int position) {
+        MyDBHelper myDBHelper = new MyDBHelper(superContext, MyDBHelper.DBNAME, null, MyDBHelper.DBVERSION);
 
+        SQLiteDatabase database = myDBHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("status", 2);
+        ItemDO item = this.getItem(position);
+        String id = String.valueOf(item.getId());
+        int result = database.update(MyDBHelper.TABLENAME, values, "id = ?", new String[]{id});
+        Log.i("yunsheng", result + " has been update");
+    }
 
 }

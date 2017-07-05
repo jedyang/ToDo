@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         android:text="完成"
         android:id="@+id/checkBox"
-        android:clickable="false"
-        android:focusable="false"
+
         android:focusableInTouchMode="false"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"/>
